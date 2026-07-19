@@ -1,0 +1,29 @@
+{
+  "name": "fanpulse-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GenAI-Powered Stadium Operations & Fan Experience Platform for FIFA World Cup 2026",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=apps/server\" \"npm run dev --workspace=apps/web\"",
+    "build": "npm run build --workspace=packages/shared-types && npm run build --workspace=apps/server && npm run build --workspace=apps/web",
+    "build:web": "npm run build --workspace=packages/shared-types && npm run build --workspace=apps/web",
+    "test": "npm run test --workspace=apps/server && npm run test --workspace=apps/web",
+    "lint": "npm run lint --workspace=apps/server && npm run lint --workspace=apps/web",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\" --ignore-path .gitignore"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "prettier": "^3.3.3",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^9.18.0",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
