@@ -89,11 +89,11 @@ export const config = {
   simulatorTickMs: optionalIntEnv('SIMULATOR_TICK_MS', 10_000), // 10 sec
 } as const;
 
-// Fail fast in production if no API key is provided
+// Log warning in production if no API key is provided, rather than crashing (useful for hackathon demo sandboxes)
 if (config.nodeEnv === 'production' && config.isMockAiMode) {
-  throw new Error(
-    '[Config] ANTHROPIC_API_KEY is required in production. ' +
-      'Set it in your environment or .env file.'
+  console.warn(
+    '⚠️  [Config] ANTHROPIC_API_KEY not set in production — running in MOCK AI mode. ' +
+      'Make sure this is intended for demo/evaluation purposes.'
   );
 }
 
